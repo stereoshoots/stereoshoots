@@ -1,0 +1,72 @@
+{% extends "AppBundle::base.html.twig" %}
+{% block page_title %}мой аккаунт{% endblock %}
+{% block body %}
+	<div class="container">
+            <div class="panel-default panel">
+            <div class="panel-body">
+            <div class="space-bottom"><legend><h1>Аккаунт пользователя {{ user.username }}</h1></legend>
+		<p>Заходил в {{user.lastLogin|date('Y-m-d H:i:s')}}</p>
+                
+                {% if app.user.id != user.id %}
+                    {% if follow %}
+                        {% if follow.isActive %}
+                            <p><button class="btn btn-default btn-unsubscribe">Отписаться</button></p>
+                        {% else %}
+                            <p><button class="btn btn-default btn-subscribe">Подписаться</button></p>
+                        {% endif %}
+                    {% else %}
+                        <p><button class="btn btn-default btn-subscribe">Подписаться</button></p>
+                    {% endif %}
+                {% endif %}
+                
+            </div>
+            <div class="space-bottom">
+                <div class="profile-avatar"><img src="{% if user.avatar %}{{ user.getAvatarPath }}{{ user.avatar }}{% else %}{{ asset('images/noavatar.png') }}{% endif %}" /></div>
+		<p>Имя пользователя: {{ user.getUsername }}</p>
+		<p>E-mail: {{ user.email }}</p>
+                <p>Телефон: {{ user.phone }}</p>
+                <p>Дата рождения: {{ user.getBirthDate|date('Y M d') }}</p>
+                <p>Пол: {% if user.gender == 'male' %}Мужчина {% elseif user.gender == 'female' %}Женщина{% else %}Не указан {% endif %}</p>
+                <p>Местонахождение: {{ user.locationCountry }}, {{ user.locationCity }}</p>
+            </div>
+            </div>
+            </div>
+	</div>
+{% endblock body %}
+{% block javascript %}
+    <script>
+        $(document).on('click', ".btn-subscribe", function() {
+            $.ajax({
+                    type: 'POST',
+                    url: '{{ path('subscribe') }}',
+                    data: 'id={{ user.getId }}',
+                    success: function(data){
+                        if(data == 'subscribed') {
+                            alert(data);
+                            $('.btn-subscribe').removeClass('btn-subscribe').addClass('btn-unsubscribe').text('Отписаться');
+                        }
+                        else {
+                            alert(data);
+                        }
+                    }
+            });        
+        });
+        
+        $(document).on('click', ".btn-unsubscribe", function() {
+            $.ajax({
+                type: 'POST',
+                url: '{{ path('unsubscribe') }}',
+                data: 'id={{ user.getId }}',
+                success: function(data){
+                    if(data == 'unsubscribed') {
+                        alert(data);
+                        $('.btn-unsubscribe').removeClass('btn-unsubscribe').addClass('btn-subscribe').text('Подписаться');
+                    }
+                    else {
+                        alert(data);
+                    }
+                }
+            });
+        });
+    </script>
+{% endblock %}

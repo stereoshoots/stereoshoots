@@ -1,0 +1,66 @@
+{% extends "AppBundle::base.html.twig" %}
+{% block page_title %}редактирование аккаунта{% endblock %}
+{% block body %}
+<div class="container">
+    <div class="panel-default panel">
+    <div class="panel-body">
+    <legend><h1>Редактирование аккаунта {{app.user.username}}</h1></legend>
+	<form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="form-horizontal fos_user_profile_edit">
+		<fieldset>
+                         <div class="form-group">
+                              <label for="inputPassword" class="col-lg-2 control-label">Аватар</label>
+                              <div class="col-lg-10">
+                                  <div class="col-lg-4"><div class="row" style="margin-right:1px">{{ form_widget(form.avatar, { 'attr': {'class' : 'form-control ', 'accept' : 'image/*'} }) }}</div>
+                                  <div class="form_error_field">{{ form_errors(form.avatar) }}</div>
+                                  </div>
+                              </div>
+                        </div>
+                        <div class="form-group">
+                              <label for="inputPassword" class="col-lg-2 control-label">Пол</label>
+                              <div class="col-lg-10">
+                                    {{ form_widget(form.gender, { 'attr': {'class': 'form-control', 'id' : 'inputGender'} }) }}
+                                    <div class="form_error_field">{{ form_errors(form.gender) }}</div>
+                              </div>
+                        </div>
+                        <div class="form-group">
+                              <label for="inputPassword" class="col-lg-2 control-label">Дата рождения</label>
+                              <div class="col-lg-10">
+                                  <div class="col-lg-4"><div class="row" style="margin-right:1px">{{ form_widget(form.birthDate.year, { 'attr': {'class': 'form-control '} }) }}</div></div>
+                                  <div class="col-lg-4"><div class="row" style="margin-right:1px">{{ form_widget(form.birthDate.month, { 'attr': {'class': 'form-control'} }) }}</div></div>
+                                  <div class="col-lg-4"><div class="row">{{ form_widget(form.birthDate.day, { 'attr': {'class': 'form-control'} }) }}</div></div>
+                                  <div class="form_error_field">{{ form_errors(form.birthDate) }}</div>
+                              </div>
+                        </div>
+                        <div class="form-group">
+                              <label for="inputPassword" class="col-lg-2 control-label">Телефон</label>
+                              <div class="col-lg-10">
+                                      {{ form_widget(form.phone, { 'attr': {'class': 'form-control', 'id' : 'inputPhone', 'placeholder' : 'Телефон'} }) }}
+                                      <div class="form_error_field">{{ form_errors(form.phone) }}</div>
+                              </div>
+                        </div>
+                        <div class="form-group">
+                              <label for="inputPassword" class="col-lg-2 control-label">Страна</label>
+                              <div class="col-lg-10">
+                                      {{ form_widget(form.locationCountry, { 'attr': {'class': 'form-control', 'id' : 'inputLocationCountry', 'placeholder' : 'Страна'} }) }}
+                                      <div class="form_error_field">{{ form_errors(form.locationCountry) }}</div>
+                              </div>
+                        </div>
+                        <div class="form-group">
+                              <label for="inputPassword" class="col-lg-2 control-label">Город</label>
+                              <div class="col-lg-10">
+                                      {{ form_widget(form.locationCity, { 'attr': {'class': 'form-control', 'id' : 'inputLocationCity', 'placeholder' : 'Город'} }) }}
+                                      <div class="form_error_field">{{ form_errors(form.locationCity) }}</div>
+                              </div>
+                        </div>
+                            {{ form_widget(form._token, { 'attr': {'type': 'hidden'} }) }}
+                        <div class="form-group">
+                              <div class="col-lg-10 col-lg-offset-2">
+                                <input class="btn btn-default" type="submit" value="Сохранить" />
+                              </div>
+                        </div>
+		</fieldset>
+	</form>
+    </div>
+    </div>
+</div>
+{% endblock body %}

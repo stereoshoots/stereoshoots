@@ -1,0 +1,44 @@
+{% extends 'AppBundle::base.html.twig' %}
+{% block page_title %}обработка изображения{% endblock %}
+{% block body %}
+    <div class="container">
+            <div class="panel-default panel">
+                <div class="panel-body">
+                    <div class="space-bottom"><legend><h1>Обработка изображения</h1></legend>
+                        <div class="col-lg-10">
+                            <div class="process-photo"><img src="{{ photo.getImage }}" /></div>
+                        </div>
+                    </div>
+                </div>
+                        <div class="space-bottom"></div>
+                        <form action="{{ path('process_photo', { 'slug': photo.getId }) }}" {{ form_enctype(form) }} method="POST" class="form-horizontal">
+                            <fieldset>
+                                    <div class="form-group">
+                                          <label for="inputPassword" class="col-lg-2 control-label">Название</label>
+                                          <div class="col-lg-10">
+                                              <div class="col-lg-4"><div class="row" style="margin-right:1px">{{ form_widget(form.title, { 'attr': {'class': 'form-control '} }) }}</div>
+                                              <div class="form_error_field">{{ form_errors(form.title) }}</div>
+                                              </div>
+                                          </div>
+                                    </div>
+                                    <div class="form-group">
+                                          <label for="inputPassword" class="col-lg-2 control-label">Описание</label>
+                                          <div class="col-lg-10">
+                                              <div class="col-lg-4"><div class="row" style="margin-right:1px">{{ form_widget(form.description, { 'attr': {'class': 'form-control '} }) }}</div>
+                                              <div class="form_error_field">{{ form_errors(form.description) }}</div>
+                                              </div>
+                                          </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-10 col-lg-offset-2">
+                                          <input class="btn btn-default" type="submit" value="Загрузить" />
+                                        </div>
+                                    </div>
+                                    {{ form_widget(form._token) }}
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    </div>
+{% endblock %}

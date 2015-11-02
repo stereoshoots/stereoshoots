@@ -1,0 +1,17 @@
+{% extends "AppBundle::base.html.twig" %}
+{% block page_title %}мои подписки{% endblock %}
+{% block body %}
+	<div class="container">
+            <div class="panel-default panel">
+            <div class="panel-body">
+            <div class="space-bottom"><legend><h1>Мои подписки</h1></legend>
+            </div>
+            <div class="space-bottom">
+		{% for follower in followings %}
+                    {{ follower.user.getUsername }}
+                {% endfor %}
+            </div>
+            </div>
+            </div>
+	</div>
+{% endblock body %}

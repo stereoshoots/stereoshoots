@@ -1,0 +1,49 @@
+{% extends "AppBundle::base.html.twig" %}
+{% block page_title %}регистрация нового аккаунта{% endblock %}
+{% block body %}
+<div class="container">
+    <div class="panel-default panel">
+    <div class="panel-body">
+        <legend><h1>Регистрация нового аккаунта</h1></legend>
+        <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="form-horizontal fos_user_registration_register">
+            <fieldset>
+              <div class="form-group">
+                <label for="inputPassword" class="col-lg-2 control-label">Логин</label>
+                <div class="col-lg-10">
+                    {{ form_widget(form.username, { 'attr': {'class': 'form-control', 'id' : 'inputLogin', 'placeholder' : 'Логин'} }) }}
+                    <div class="form_error_field">{{ form_errors(form.username) }}</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputPassword" class="col-lg-2 control-label">Пароль</label>
+                <div class="col-lg-10">
+                    {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control', 'id' : 'inputPassword', 'placeholder' : 'Пароль'} }) }}
+                    <div class="form_error_field">{{ form_errors(form.plainPassword.first) }}</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputPassword" class="col-lg-2 control-label">Подтвердите пароль</label>
+                <div class="col-lg-10">
+                    {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control', 'id' : 'inputPasswordSecond', 'placeholder' : 'Подтвердите пароль'} }) }}
+                    <div class="form_error_field">{{ form_errors(form.plainPassword.second) }}</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="inputEmail" class="col-lg-2 control-label">Почтовый адрес</label>
+                <div class="col-lg-10">
+                  {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'id' : 'inputEmail', 'placeholder' : 'Почтовый адрес'} }) }}
+                  <div class="form_error_field">{{ form_errors(form.email) }}</div>
+                </div>
+              </div>
+              {{ form_widget(form._token, { 'attr': {'type': 'hidden'} }) }}
+               <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2">
+                  <input class="btn btn-default" type="submit" value="Зарегистрировать" />
+                </div>
+              </div>
+        </fieldset>
+        </form>
+    </div>
+    </div>
+</div>
+{% endblock body %}

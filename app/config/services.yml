@@ -1,0 +1,13 @@
+services:
+    app.form.profile:
+        class: UserBundle\Form\Type\ProfileFormType
+        tags:
+            - { name: form.type, alias: app_user_profile }
+    app.form.upload:
+        class: AppBundle\Form\Type\UploadFormType
+        tags:
+            - { name: form.type, alias: app_photo_upload }
+    app.form.process:
+        class: AppBundle\Form\Type\ProcessFormType
+        tags:
+            - { name: form.type, alias: app_photo_process }

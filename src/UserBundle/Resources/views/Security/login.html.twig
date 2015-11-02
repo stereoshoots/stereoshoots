@@ -1,0 +1,42 @@
+{% extends "AppBundle::base.html.twig" %}
+{% block page_title %}вход в аккаунт{% endblock %}
+{% block body %}
+<div class="container">
+    <div class="panel-default panel">
+    <div class="panel-body">
+{% if error %}
+    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+{% endif %}
+    <legend><h1>Вход в аккаунт</h1></legend>
+    <form action="{{ path("fos_user_security_check") }}" method="POST" class="form-horizontal fos_user_registration_register">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+        <fieldset>
+          <div class="form-group">
+            <label for="inputPassword" class="col-lg-2 control-label">Логин</label>
+            <div class="col-lg-10">
+                <input type="text" id="username" class="form-control" name="_username" value="{{ last_username }}" placeholder="Логин" required="required" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword" class="col-lg-2 control-label">Пароль</label>
+            <div class="col-lg-10">
+                <input type="password" id="password" class="form-control" name="_password" placeholder="Пароль" required="required" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword" class="col-lg-2 control-label">Запомнить</label>
+            <div class="col-lg-10">
+               <input type="checkbox" id="remember_me" name="_remember_me" style="margin: 18px 0 0 0" value="on" />
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+              <input class="btn btn-default" type="submit" id="_submit" name="_submit" value="Вход" />
+            </div>
+          </div>
+    </fieldset>
+</form>
+</div>
+    </div>
+</div>
+{% endblock body %}

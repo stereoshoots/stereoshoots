@@ -1,0 +1,30 @@
+{% extends 'AppBundle::base.html.twig' %}
+{% block page_title %}загрузить новое изображение{% endblock %}
+{% block body %}
+    <div class="container">
+            <div class="panel-default panel">
+                <div class="panel-body">
+                    <div class="space-bottom"><legend><h1>Загрузить новую картинку</h1></legend>
+                        <form action="{{ path('upload_photo') }}" {{ form_enctype(form) }} method="POST" class="form-horizontal">
+                            <fieldset>
+                                     <div class="form-group">
+                                          <label for="inputPassword" class="col-lg-2 control-label">Картинка</label>
+                                          <div class="col-lg-10">
+                                              <div class="col-lg-4"><div class="row" style="margin-right:1px">{{ form_widget(form.name, { 'attr': {'class': 'form-control', 'accept' : 'image/*'} }) }}</div>
+                                              <div class="form_error_field">{{ form_errors(form.name) }}</div>
+                                              </div>
+                                          </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-lg-10 col-lg-offset-2">
+                                          <input class="btn btn-default" type="submit" value="Загрузить" />
+                                        </div>
+                                    </div>
+                                    {{ form_widget(form._token) }}
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    </div>
+{% endblock %}

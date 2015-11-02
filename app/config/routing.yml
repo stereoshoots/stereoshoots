@@ -1,0 +1,32 @@
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+index:
+    path:     /
+    defaults: { _controller: AppBundle:Index:index }
+upload_photo:
+    path:     /upload
+    defaults: { _controller: AppBundle:Upload:index }
+process_photo:
+    path:     /process/{slug}
+    defaults: { _controller: AppBundle:Process:index }
+profile:
+    path:   /profile/{username}
+    defaults: { _controller: AppBundle:Profile:index }
+profile_following:
+    path:     /profile/{username}/following
+    defaults: { _controller: AppBundle:Profile:following }
+profile_followers:
+    path:     /profile/{username}/followers
+    defaults: { _controller: AppBundle:Profile:followers }
+subscribe:
+    path: /subscribe
+    defaults: { _controller: AppBundle:Follow:subscribe }
+unsubscribe:
+    path: /unsubscribe
+    defaults: { _controller: AppBundle:Follow:unsubscribe }
+follow_index:
+    path: /follow/index
+    defaults: { _controller: AppBundle:Follow:index }
+top:
+    path:     /top
+    defaults: { _controller: AppBundle:Top:index }

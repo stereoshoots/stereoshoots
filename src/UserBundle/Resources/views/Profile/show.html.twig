@@ -1,0 +1,24 @@
+{% extends "AppBundle::base.html.twig" %}
+{% block page_title %}мой аккаунт{% endblock %}
+{% block body %}
+	<div class="container">
+            <div class="panel-default panel">
+            <div class="panel-body">
+            <div class="space-bottom"><legend><h1>Мой аккаунт</h1></legend>
+                <div class="profile-avatar"><img src="{% if app.user.avatar %}{{ app.user.getAvatarPath }}{{ app.user.avatar }}{% else %}{{ asset('images/noavatar.png') }}{% endif %}" /></div>
+		<h2>{{ user.username }}</h2>
+		<p>Заходил в {{user.lastLogin|date('Y-m-d H:i:s')}}</p>
+            </div>
+            <div class="space-bottom">
+		<p>Имя пользователя: {{ user.username }}</p>
+		<p>E-mail: {{ user.email }}</p>
+                <p>Телефон: {{ user.phone }}</p>
+                <p>Дата рождения: {{ user.getBirthDate|date('Y M d') }}</p>
+                <p>Пол: {% if user.gender == 'male' %}Мужчина {% elseif user.gender == 'female' %}Женщина{% else %}Не указан {% endif %}</p>
+                <p>Местонахождение: {{ user.locationCountry }}, {{ user.locationCity }}</p>
+		<a href="{{ path("fos_user_profile_edit") }}"><button class="btn btn-default">Редактировать</button></a>
+            </div>
+            </div>
+            </div>
+	</div>
+{% endblock body %}

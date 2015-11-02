@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="generator" content="Bootply" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <title>{% block title %}Stereoshoots – {% block page_title %}{% endblock %}{% endblock %}</title>
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap.min.css') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/styles.css') }}" />
+    </head>
+    <body>
+        {% include 'AppBundle::header.html.twig' %}
+        {% block body %}{% endblock %}
+        <script src="{{ asset('js/jquery-2.1.4.min.js') }}"></script>
+        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+        {% block javascript %}{% endblock %}
+    </body>
+</html>
